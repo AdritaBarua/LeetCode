@@ -1,3 +1,5 @@
+##Time: O(log₁₀ x), Space: O(log₁₀ x)
+
 def reverse(x):
         INT_MAX = 2**31 -1 
         INT_MIN = - 2**31
@@ -16,3 +18,25 @@ def reverse(x):
             return 0
 
         return reversed_int
+
+
+## better solution
+## Time: O(log₁₀ x) Space: O(1)
+
+def reverse(self, x: int) -> int:
+        INT_MIN, INT_MAX = -2**31, 2**31 - 1
+        rev = 0
+        negative = x < 0
+        x = abs(x)
+        
+        while x != 0:
+            pop = x % 10        # take last digit
+            x //= 10            # remove last digit
+            
+            # Check for overflow before pushing the digit
+            if rev > (INT_MAX - pop) // 10:
+                return 0
+            
+            rev = rev * 10 + pop
+        
+        return -rev if negative else rev
