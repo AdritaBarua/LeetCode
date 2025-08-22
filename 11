@@ -1,0 +1,16 @@
+## O(n)
+def maxArea(self, height):
+        n = len(height)
+        i, j = 0, n-1
+        maxI = 0
+
+        while i < j:
+            if height[i] < height[j]:
+                maxW = height[i] * (j - i)
+                i += 1
+            else:
+                maxW = height[j] * (j - i)
+                j -= 1
+            if maxI < maxW:
+                maxI = maxW
+        return maxI
