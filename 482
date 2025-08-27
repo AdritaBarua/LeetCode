@@ -1,0 +1,16 @@
+##O(n) time and O(n) space.
+
+def licenseKeyFormatting(self, s, k):
+        # Step 1: remove dashes and make uppercase
+        s = s.replace("-", "").upper()
+        
+        # Step 2: find size of first group
+        first_len = len(s) % k or k
+        
+        # Step 3: build result
+        groups = [s[:first_len]]  # first group
+        for i in range(first_len, len(s), k):
+            groups.append(s[i:i+k])
+        
+        # Step 4: join with dashes
+        return "-".join(groups)
