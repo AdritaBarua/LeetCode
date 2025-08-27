@@ -1,0 +1,21 @@
+## O(n) time and uses O(1) space
+def getHint(self, secret, guess):
+        bulls = 0
+        cows = 0
+        s_count = [0]*10
+        g_count = [0]*10
+
+        for i in range (len(secret)):
+            s_digit = secret[i]
+            g_digit = guess[i]
+
+            if s_digit == g_digit:
+                bulls += 1
+            else: 
+                s_count[int(s_digit)] += 1
+                g_count[int(g_digit)] += 1
+            
+        for d in range(10): 
+            cows += min(s_count[d], g_count[d])
+
+        return "{}A{}B".format(bulls, cows)
